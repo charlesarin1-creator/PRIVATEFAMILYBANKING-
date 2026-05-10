@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>PRIVATE FAMILY BANKING — Treasury Governance System</title>
+
+  <meta name="description" content="PRIVATE FAMILY BANKING is a disciplined treasury operating system designed for structured savings, reserve protection, internal credit governance, and continuity-focused financial behavior." />
+
+  <style>
+    :root{
+      --navy:#071a2f;
+      --navy-2:#102846;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --white:#ffffff;
+      --bg:#f4f7fb;
+      --line:#dbe3ea;
+      --ink:#111827;
+      --muted:#64748b;
+      --card:#ffffff;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:58px;
+      height:58px;
+      border-radius:14px;
+      background:#fff;
+      padding:4px;
+      object-fit:contain;
+    }
+
+    .brand h1{
+      color:#fff;
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.7);
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s ease;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#020d19);
+      color:#fff;
+      padding:80px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero h2{
+      font-size:58px;
+      line-height:1.05;
+      margin-bottom:24px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.84);
+      font-size:18px;
+      line-height:1.9;
+      margin-bottom:28px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      padding:12px 16px;
+      border-radius:999px;
+      margin-bottom:24px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 20px;
+      border-radius:14px;
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#111;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      background:transparent;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:28px;
+    }
+
+    .hero-card small{
+      color:rgba(255,255,255,.72);
+    }
+
+    .hero-card h3{
+      font-size:52px;
+      margin:14px 0;
+      color:var(--gold);
+    }
+
+    .hero-card p{
+      margin:0;
+      font-size:15px;
+    }
+
+    /* SECTIONS */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:36px;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 12px 28px rgba(0,0,0,.04);
+    }
+
+    .card h3{
+      color:var(--navy);
+      margin-bottom:16px;
+      font-size:24px;
+    }
+
+    .card p{
+      color:var(--muted);
+    }
+
+    .tag{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      margin-bottom:16px;
+    }
+
+    .gold{background:var(--gold);}
+    .copper{background:var(--copper);}
+    .navy{background:var(--navy);}
+    .green{background:#15803d;}
+    .red{background:#b91c1c;}
+
+    /* GOVERNANCE */
+
+    .governance{
+      background:var(--navy);
+      color:#fff;
+    }
+
+    .governance .section-title{
+      color:#fff;
+    }
+
+    .gov-box{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:28px;
+    }
+
+    .gov-box h3{
+      margin-bottom:16px;
+      color:var(--gold);
+    }
+
+    .gov-box ul{
+      padding-left:18px;
+    }
+
+    .gov-box li{
+      margin:10px 0;
+      color:rgba(255,255,255,.84);
+    }
+
+    /* CTA */
+
+    .cta{
+      background:linear-gradient(135deg,var(--gold),#d7aa49);
+      padding:70px 0;
+    }
+
+    .cta-box{
+      text-align:center;
+    }
+
+    .cta-box h2{
+      font-size:46px;
+      margin-bottom:18px;
+      color:#111;
+    }
+
+    .cta-box p{
+      max-width:760px;
+      margin:auto;
+      color:#2b2b2b;
+      margin-bottom:26px;
+      font-size:18px;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:60px 0;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .footer h3{
+      margin-bottom:16px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.7);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.7);
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+    }
+
+    @media(max-width:920px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+    <div class="container nav-flex">
+
+      <div class="brand">
+        <img src="./assets/logo.png" alt="PFB Logo">
+
+        <div>
+          <h1>PRIVATE FAMILY BANKING</h1>
+          <p>Credit • Savings • Continuity</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./vaults.html">Vaults</a>
+        <a href="./governance.html">Governance</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="pill">
+          <span class="dot"></span>
+          <span>Governed Treasury Infrastructure</span>
+        </div>
+
+        <h2>
+          Structure Before Spending.
+        </h2>
+
+        <p>
+          PRIVATE FAMILY BANKING is a disciplined treasury operating system designed for structured savings, reserve protection, internal credit governance, and continuity-focused financial behavior.
+        </p>
+
+        <div class="hero-actions">
+          <a href="./dashboard.html" class="btn btn-primary">
+            Open Treasury Dashboard
+          </a>
+
+          <a href="./governance.html" class="btn btn-secondary">
+            View Governance Rules
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <small>FOUNDATIONAL TREASURY CAPITAL</small>
+
+        <h3>₦100,000</h3>
+
+        <p>
+          Governed under the constitutional doctrine:
+          <strong>Survival Before Expansion.</strong>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- VAULTS -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        The Five-Vault Treasury System
+      </h2>
+
+      <p class="section-sub">
+        Every inflow entering the system is governed through protected vault structures designed to preserve liquidity, structure growth, and enforce disciplined allocation.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="tag gold"></div>
+          <h3>Stability Reserve</h3>
+          <p>
+            Emergency continuity protection designed to preserve treasury survival during instability or operational disruption.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag copper"></div>
+          <h3>Expansion Vault</h3>
+          <p>
+            Structured growth allocation reserved for strategic opportunities and long-term institutional expansion.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag navy"></div>
+          <h3>Operating Vault</h3>
+          <p>
+            Controlled operational liquidity for daily movement, execution, and governed treasury activity.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag red"></div>
+          <h3>Credit Vault</h3>
+          <p>
+            Internal lending structure governed through qualification logic, repayment visibility, and exposure limits.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag green"></div>
+          <h3>BIG SHARKS Strategic Vault</h3>
+          <p>
+            Long-term institutional development allocation separated from personal treasury survival systems.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GOVERNANCE -->
+
+  <section class="section governance">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Treasury Governance
+      </h2>
+
+      <p class="section-sub">
+        PRIVATE FAMILY BANKING operates through constitutional financial discipline rather than emotional financial behavior.
+      </p>
+
+      <div class="grid">
+
+        <div class="gov-box">
+          <h3>Contribution Law</h3>
+
+          <ul>
+            <li>Contributions happen before discretionary spending.</li>
+            <li>Every inflow must be allocated automatically.</li>
+            <li>Liquidity protection takes priority over expansion.</li>
+          </ul>
+        </div>
+
+        <div class="gov-box">
+          <h3>Withdrawal Governance</h3>
+
+          <ul>
+            <li>Every withdrawal must strengthen the system.</li>
+            <li>Yellow-class spending requires a 24-hour wait.</li>
+            <li>Red-class spending is automatically denied.</li>
+          </ul>
+        </div>
+
+        <div class="gov-box">
+          <h3>Credit Governance</h3>
+
+          <ul>
+            <li>No undocumented loans are permitted.</li>
+            <li>Maximum credit exposure is capped.</li>
+            <li>Repayment visibility is mandatory before approval.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="container">
+
+      <div class="cta-box">
+
+        <h2>
+          Treasury Discipline Creates Continuity.
+        </h2>
+
+        <p>
+          PRIVATE FAMILY BANKING exists to preserve structure, protect liquidity, govern financial behavior, and build institutional continuity through disciplined treasury architecture.
+        </p>
+
+        <a href="./dashboard.html" class="btn btn-primary">
+          Enter Treasury Dashboard
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <h3>PRIVATE FAMILY BANKING</h3>
+
+        <p>
+          A governed internal treasury operating system designed for continuity, reserve protection, structured savings, and disciplined financial architecture.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+        <a href="./dashboard.html">Treasury Dashboard</a>
+        <a href="./vaults.html">Vault Architecture</a>
+        <a href="./governance.html">Governance Rules</a>
+        <a href="./ledger.html">Treasury Ledger</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
