@@ -1,0 +1,649 @@
+<!-- =========================================================
+PRIVATE FAMILY BANKING — dashboard.html
+PHASE 1 TREASURY OPERATING SYSTEM
+Place this file in:
+bigsharks-site/dashboard.html
+========================================================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>PRIVATE FAMILY BANKING — Treasury Dashboard</title>
+
+<link rel="stylesheet" href="./assets/style.css">
+
+<style>
+:root{
+  --navy:#071a2f;
+  --navy-2:#0d2744;
+  --gold:#c89b3c;
+  --ember:#d65a31;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --line:#dbe3ea;
+  --bg:#f4f7fb;
+  --white:#ffffff;
+  --success:#0f766e;
+  --danger:#b42318;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Inter,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--navy),#02101f);
+  color:#fff;
+  padding:18px 0;
+  border-bottom:4px solid var(--gold);
+}
+
+.topbar-flex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.brand img{
+  width:58px;
+  height:58px;
+  object-fit:contain;
+  background:#fff;
+  border-radius:14px;
+  padding:4px;
+}
+
+.brand h1{
+  font-size:24px;
+  line-height:1.1;
+}
+
+.brand p{
+  color:rgba(255,255,255,.7);
+  margin-top:4px;
+}
+
+.gov-badge{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  padding:12px 16px;
+  border-radius:14px;
+  font-size:14px;
+}
+
+.hero{
+  background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;
+  padding:50px 0;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
+}
+
+.hero-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  padding:28px;
+}
+
+.hero h2{
+  font-size:48px;
+  line-height:1.05;
+  margin-bottom:18px;
+}
+
+.hero p{
+  color:rgba(255,255,255,.84);
+  line-height:1.8;
+  font-size:17px;
+}
+
+.status{
+  margin-top:18px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(0,0,0,.2);
+  border:1px solid rgba(255,255,255,.1);
+  padding:12px 16px;
+  border-radius:999px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.total-box{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  height:100%;
+}
+
+.total-label{
+  color:rgba(255,255,255,.72);
+  margin-bottom:10px;
+}
+
+.total-value{
+  font-size:58px;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.total-note{
+  margin-top:12px;
+  color:rgba(255,255,255,.74);
+}
+
+.section{
+  padding:50px 0;
+}
+
+.section-title{
+  font-size:34px;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+
+.section-sub{
+  color:var(--muted);
+  margin-bottom:28px;
+  line-height:1.7;
+}
+
+.vault-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.vault{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+
+.vault-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.vault-tag{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+}
+
+.gold{background:var(--gold);}
+.red{background:var(--ember);}
+.green{background:var(--success);}
+.blue{background:#2563eb;}
+.orange{background:#ea580c;}
+
+.vault h3{
+  margin-bottom:10px;
+  font-size:22px;
+  color:var(--navy);
+}
+
+.vault-amount{
+  font-size:34px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.vault p{
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.gov-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+
+.gov-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+}
+
+.gov-card h4{
+  color:var(--navy);
+  margin-bottom:12px;
+  font-size:22px;
+}
+
+.gov-card ul{
+  padding-left:18px;
+}
+
+.gov-card li{
+  margin:10px 0;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.table-wrap{
+  overflow:auto;
+  background:#fff;
+  border-radius:24px;
+  border:1px solid var(--line);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:var(--navy);
+  color:#fff;
+  text-align:left;
+  padding:16px;
+}
+
+td{
+  padding:16px;
+  border-bottom:1px solid var(--line);
+}
+
+.rule-box{
+  background:#fff5eb;
+  border:1px solid #fed7aa;
+  border-radius:24px;
+  padding:24px;
+  color:#7c2d12;
+}
+
+.rule-box h3{
+  margin-bottom:12px;
+}
+
+.footer{
+  background:#07111d;
+  color:#fff;
+  padding:40px 0;
+  margin-top:60px;
+}
+
+.footer p{
+  color:rgba(255,255,255,.7);
+  line-height:1.8;
+}
+
+@media(max-width:920px){
+
+.hero-grid{
+  grid-template-columns:1fr;
+}
+
+.hero h2{
+  font-size:38px;
+}
+
+.total-value{
+  font-size:44px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+<div class="container topbar-flex">
+
+<div class="brand">
+<img src="./assets/logo.png" alt="logo">
+
+<div>
+<h1>PRIVATE FAMILY BANKING</h1>
+<p>Treasury Governance System</p>
+</div>
+</div>
+
+<div class="gov-badge">
+SYSTEM STATUS: ACTIVE • PHASE 1 GOVERNANCE
+</div>
+
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-grid">
+
+<div class="hero-card">
+
+<h2>
+Governed Personal Treasury Infrastructure
+</h2>
+
+<p>
+PRIVATE FAMILY BANKING exists to preserve liquidity,
+enforce discipline, separate survival from expansion,
+and channel resources through institutional rules instead of emotion.
+</p>
+
+<div class="status">
+<span class="dot"></span>
+<span>Operational Discipline Mode Enabled</span>
+</div>
+
+</div>
+
+<div class="hero-card total-box">
+
+<div class="total-label">
+TOTAL TREASURY VALUE
+</div>
+
+<div class="total-value">
+₦100,000
+</div>
+
+<div class="total-note">
+Governed under the constitutional law:
+<strong>Survival Before Expansion.</strong>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<h2 class="section-title">
+Treasury Vault Architecture
+</h2>
+
+<p class="section-sub">
+All resources are governed through protected vaults.
+Each vault exists for a defined institutional purpose.
+</p>
+
+<div class="vault-grid">
+
+<div class="vault">
+<div class="vault-head">
+<h3>Stability Reserve</h3>
+<span class="vault-tag gold"></span>
+</div>
+
+<div class="vault-amount">₦35,000</div>
+
+<p>
+Emergency continuity reserve.
+Protected against emotional withdrawal and operational misuse.
+</p>
+</div>
+
+<div class="vault">
+<div class="vault-head">
+<h3>Expansion Vault</h3>
+<span class="vault-tag orange"></span>
+</div>
+
+<div class="vault-amount">₦20,000</div>
+
+<p>
+Strategic growth and institutional expansion allocation.
+Used only after governance review.
+</p>
+</div>
+
+<div class="vault">
+<div class="vault-head">
+<h3>Operating Vault</h3>
+<span class="vault-tag blue"></span>
+</div>
+
+<div class="vault-amount">₦15,000</div>
+
+<p>
+Daily operational liquidity.
+All movement fully logged and monitored.
+</p>
+</div>
+
+<div class="vault">
+<div class="vault-head">
+<h3>Credit Vault</h3>
+<span class="vault-tag red"></span>
+</div>
+
+<div class="vault-amount">₦15,000</div>
+
+<p>
+Controlled internal lending system with governance qualification logic.
+</p>
+</div>
+
+<div class="vault">
+<div class="vault-head">
+<h3>BIG SHARKS Vault</h3>
+<span class="vault-tag green"></span>
+</div>
+
+<div class="vault-amount">₦15,000</div>
+
+<p>
+Strategic institutional development funding protected from personal instability.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<h2 class="section-title">
+Governance Rules
+</h2>
+
+<p class="section-sub">
+The system operates through constitutional discipline,
+not emotional financial behavior.
+</p>
+
+<div class="gov-grid">
+
+<div class="gov-card">
+<h4>Contribution Law</h4>
+
+<ul>
+<li>Contributions happen before discretionary spending.</li>
+<li>Every inflow is allocated automatically.</li>
+<li>Liquidity preservation takes priority.</li>
+</ul>
+</div>
+
+<div class="gov-card">
+<h4>Withdrawal Governance</h4>
+
+<ul>
+<li>Every withdrawal must strengthen the system.</li>
+<li>Yellow-class spending triggers a 24-hour wait.</li>
+<li>Red-class spending is automatically denied.</li>
+</ul>
+</div>
+
+<div class="gov-card">
+<h4>Credit Rules</h4>
+
+<ul>
+<li>No undocumented loans.</li>
+<li>Maximum exposure capped at 30%.</li>
+<li>Repayment source required before approval.</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<h2 class="section-title">
+Treasury Activity
+</h2>
+
+<p class="section-sub">
+Every movement inside the treasury system must be visible,
+logged, and reviewable.
+</p>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Reference</th>
+<th>Type</th>
+<th>Vault</th>
+<th>Amount</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>PFB-0001</td>
+<td>Initial Allocation</td>
+<td>Stability Reserve</td>
+<td>₦35,000</td>
+<td>Completed</td>
+</tr>
+
+<tr>
+<td>PFB-0002</td>
+<td>Initial Allocation</td>
+<td>Expansion Vault</td>
+<td>₦20,000</td>
+<td>Completed</td>
+</tr>
+
+<tr>
+<td>PFB-0003</td>
+<td>Initial Allocation</td>
+<td>Operating Vault</td>
+<td>₦15,000</td>
+<td>Completed</td>
+</tr>
+
+<tr>
+<td>PFB-0004</td>
+<td>Initial Allocation</td>
+<td>Credit Vault</td>
+<td>₦15,000</td>
+<td>Completed</td>
+</tr>
+
+<tr>
+<td>PFB-0005</td>
+<td>Initial Allocation</td>
+<td>BIG SHARKS Vault</td>
+<td>₦15,000</td>
+<td>Completed</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+<div class="rule-box">
+
+<h3>
+Governance Declaration
+</h3>
+
+<p>
+PRIVATE FAMILY BANKING exists to preserve continuity,
+enforce institutional behavior,
+and build disciplined treasury order over time.
+The system is governed by rules,
+not moods.
+Survival before expansion.
+Structure before opportunity.
+</p>
+
+</div>
+
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+
+<h2>PRIVATE FAMILY BANKING</h2>
+
+<p>
+Institutional treasury architecture connected to the
+BIG SHARKS long-term governance vision.
+Built for disciplined continuity,
+liquidity protection,
+and structural integrity.
+</p>
+
+</div>
+</footer>
+
+</body>
+</html>
