@@ -1,13 +1,18 @@
-style>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>PRIVATE FAMILY BANKING — Treasury Governance System</title>
 
-  <meta name="description" content="PRIVATE FAMILY BANKING is a disciplined treasury operating system designed for structured savings, reserve protection, internal credit governance, and continuity-focused financial behavior." />
+  <meta name="description"
+    content="PRIVATE FAMILY BANKING is a disciplined treasury operating system designed for structured savings, reserve protection, internal credit governance, and continuity-focused financial behavior." />
 
   <style>
+
     :root{
       --navy:#071a2f;
       --navy-2:#102846;
@@ -69,8 +74,8 @@ style>
     }
 
     .brand img{
-      width:58px;
-      height:58px;
+      width:60px;
+      height:60px;
       border-radius:14px;
       background:#fff;
       padding:4px;
@@ -79,7 +84,7 @@ style>
 
     .brand h1{
       color:#fff;
-      font-size:24px;
+      font-size:22px;
       line-height:1.1;
     }
 
@@ -93,6 +98,7 @@ style>
       display:flex;
       gap:12px;
       flex-wrap:wrap;
+      align-items:center;
     }
 
     .nav-links a{
@@ -100,10 +106,21 @@ style>
       padding:10px 14px;
       border-radius:10px;
       transition:.2s ease;
+      font-size:14px;
     }
 
     .nav-links a:hover{
       background:rgba(255,255,255,.08);
+    }
+
+    .bigsharks-btn{
+      background:var(--gold);
+      color:#111 !important;
+      font-weight:700;
+    }
+
+    .bigsharks-btn:hover{
+      transform:translateY(-2px);
     }
 
     /* HERO */
@@ -111,28 +128,14 @@ style>
     .hero{
       background:linear-gradient(135deg,var(--navy),#020d19);
       color:#fff;
-      padding:80px 0;
+      padding:90px 0;
     }
 
     .hero-grid{
       display:grid;
       grid-template-columns:1.2fr .8fr;
-      gap:24px;
+      gap:30px;
       align-items:center;
-    }
-
-    .hero h2{
-      font-size:58px;
-      line-height:1.05;
-      margin-bottom:24px;
-      letter-spacing:-.03em;
-    }
-
-    .hero p{
-      color:rgba(255,255,255,.84);
-      font-size:18px;
-      line-height:1.9;
-      margin-bottom:28px;
     }
 
     .pill{
@@ -153,6 +156,20 @@ style>
       background:var(--gold);
     }
 
+    .hero h2{
+      font-size:58px;
+      line-height:1.05;
+      margin-bottom:24px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.84);
+      font-size:18px;
+      line-height:1.9;
+      margin-bottom:28px;
+    }
+
     .hero-actions{
       display:flex;
       gap:14px;
@@ -164,6 +181,7 @@ style>
       border-radius:14px;
       font-weight:700;
       transition:.2s ease;
+      display:inline-block;
     }
 
     .btn-primary{
@@ -171,21 +189,20 @@ style>
       color:#111;
     }
 
-    .btn-primary:hover{
-      transform:translateY(-2px);
-    }
-
     .btn-secondary{
       border:1px solid rgba(255,255,255,.18);
       color:#fff;
-      background:transparent;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
     }
 
     .hero-card{
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.08);
       border-radius:28px;
-      padding:28px;
+      padding:32px;
     }
 
     .hero-card small{
@@ -193,7 +210,7 @@ style>
     }
 
     .hero-card h3{
-      font-size:52px;
+      font-size:54px;
       margin:14px 0;
       color:var(--gold);
     }
@@ -203,7 +220,7 @@ style>
       font-size:15px;
     }
 
-    /* SECTIONS */
+    /* SECTION */
 
     .section{
       padding:80px 0;
@@ -378,52 +395,41 @@ style>
 
 <body>
 
-  <!-- <header class="pfb-header">
-  <div class="container header-inner">
-
-    <!-- LOGO AREA -->
-    <a href="index.html" class="brand">
-      <img src="assets/logo.png" alt="Private Family Banking Logo" class="brand-logo">
-
-      <div class="brand-text">
-        <h1>PRIVATE FAMILY BANKING</h1>
-        <p>Treasury • Credit • Continuity</p>
-      </div>
-    </a>
-
-    <!-- NAVIGATION -->
-    <nav class="nav">
-      <a href="#vaults">Vaults</a>
-      <a href="#ledger">Ledger</a>
-      <a href="#credit">Credit</a>
-      <a href="#governance">Governance</a>
-      <a href="#bigsharks">BIG SHARKS</a>
-    </nav>
-
-  </div>
-</header>
-  
+  <!-- NAVBAR -->
 
   <header class="navbar">
+
     <div class="container nav-flex">
 
-      <div class="brand">
+      <a href="index.html" class="brand">
+
         <img src="./assets/logo.png" alt="PFB Logo">
 
         <div>
           <h1>PRIVATE FAMILY BANKING</h1>
-          <p>Credit • Savings • Continuity</p>
+          <p>Treasury • Credit • Continuity</p>
         </div>
-      </div>
+
+      </a>
 
       <nav class="nav-links">
+
         <a href="./index.html">Home</a>
         <a href="./dashboard.html">Dashboard</a>
         <a href="./vaults.html">Vaults</a>
         <a href="./governance.html">Governance</a>
+
+        <a
+          href="https://charlesarin1-creator.github.io/bigsharks-site/"
+          target="_blank"
+          class="bigsharks-btn">
+          BIG SHARKS
+        </a>
+
       </nav>
 
     </div>
+
   </header>
 
   <!-- HERO -->
@@ -448,6 +454,7 @@ style>
         </p>
 
         <div class="hero-actions">
+
           <a href="./dashboard.html" class="btn btn-primary">
             Open Treasury Dashboard
           </a>
@@ -455,6 +462,7 @@ style>
           <a href="./governance.html" class="btn btn-secondary">
             View Governance Rules
           </a>
+
         </div>
 
       </div>
@@ -555,6 +563,7 @@ style>
       <div class="grid">
 
         <div class="gov-box">
+
           <h3>Contribution Law</h3>
 
           <ul>
@@ -562,9 +571,11 @@ style>
             <li>Every inflow must be allocated automatically.</li>
             <li>Liquidity protection takes priority over expansion.</li>
           </ul>
+
         </div>
 
         <div class="gov-box">
+
           <h3>Withdrawal Governance</h3>
 
           <ul>
@@ -572,9 +583,11 @@ style>
             <li>Yellow-class spending requires a 24-hour wait.</li>
             <li>Red-class spending is automatically denied.</li>
           </ul>
+
         </div>
 
         <div class="gov-box">
+
           <h3>Credit Governance</h3>
 
           <ul>
@@ -582,6 +595,7 @@ style>
             <li>Maximum credit exposure is capped.</li>
             <li>Repayment visibility is mandatory before approval.</li>
           </ul>
+
         </div>
 
       </div>
@@ -633,10 +647,12 @@ style>
       </div>
 
       <div class="footer-links">
+
         <a href="./dashboard.html">Treasury Dashboard</a>
         <a href="./vaults.html">Vault Architecture</a>
         <a href="./governance.html">Governance Rules</a>
         <a href="./ledger.html">Treasury Ledger</a>
+
       </div>
 
     </div>
