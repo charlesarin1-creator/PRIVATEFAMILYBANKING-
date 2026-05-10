@@ -1,0 +1,134 @@
+/* =========================================
+   PRIVATE FAMILY BANKING HEADER
+========================================= */
+
+.pfb-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:
+    linear-gradient(
+      90deg,
+      #071a2f 0%,
+      #0d2440 100%
+    );
+
+  border-bottom:1px solid rgba(255,255,255,.06);
+
+  backdrop-filter: blur(10px);
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:18px 0;
+}
+
+/* =========================================
+   BRAND AREA
+========================================= */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  text-decoration:none;
+}
+
+.brand-logo{
+  width:62px;
+  height:62px;
+
+  object-fit:contain;
+
+  border-radius:16px;
+
+  background:#0b223d;
+
+  padding:6px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.25);
+}
+
+.brand-text h1{
+  margin:0;
+
+  color:#ffffff;
+
+  font-size:20px;
+  line-height:1.1;
+  letter-spacing:.04em;
+
+  font-weight:800;
+}
+
+.brand-text p{
+  margin:4px 0 0;
+
+  color:#c89b3c;
+
+  font-size:13px;
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.nav a{
+  color:rgba(255,255,255,.82);
+
+  text-decoration:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  transition:.25s ease;
+}
+
+.nav a:hover{
+  color:#c89b3c;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:920px){
+
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .nav{
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
+  .brand-text h1{
+    font-size:17px;
+  }
+
+  .brand-logo{
+    width:54px;
+    height:54px;
+  }
+}
