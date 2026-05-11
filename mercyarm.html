@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>MERCY ARM VAULT | PRIVATE FAMILY BANKING</title>
+
+  <meta name="description"
+    content="MERCY ARM Vault — governed mercy allocation system operating under PRIVATE FAMILY BANKING stewardship architecture." />
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy-2:#102846;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --green:#15803d;
+      --emerald:#0f766e;
+      --red:#b91c1c;
+      --bg:#f4f7fb;
+      --white:#ffffff;
+      --line:#dbe3ea;
+      --ink:#111827;
+      --muted:#64748b;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1200px,92%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#fff;
+    }
+
+    .brand img{
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      background:#fff;
+      padding:4px;
+      object-fit:contain;
+    }
+
+    .brand h1{
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.72);
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s ease;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    .bigsharks-btn{
+      background:var(--gold);
+      color:#111 !important;
+      font-weight:700;
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,#06202d,#020d19);
+      color:#fff;
+      padding:90px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      padding:12px 18px;
+      border-radius:999px;
+      margin-bottom:24px;
+      font-size:14px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .hero h2{
+      font-size:58px;
+      line-height:1.05;
+      margin-bottom:24px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.84);
+      font-size:18px;
+      max-width:760px;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:34px;
+    }
+
+    .hero-card small{
+      color:rgba(255,255,255,.72);
+    }
+
+    .hero-card h3{
+      font-size:54px;
+      margin:12px 0;
+      color:var(--gold);
+    }
+
+    .hero-card p{
+      margin:0;
+      font-size:15px;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:38px;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:30px;
+      box-shadow:0 10px 28px rgba(0,0,0,.04);
+    }
+
+    .card h3{
+      color:var(--navy);
+      margin-bottom:18px;
+      font-size:24px;
+    }
+
+    .card p{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .card ul{
+      padding-left:18px;
+    }
+
+    .card li{
+      margin:10px 0;
+      color:var(--ink);
+    }
+
+    .tag{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      margin-bottom:16px;
+    }
+
+    .emerald{background:var(--emerald);}
+    .gold{background:var(--gold);}
+    .green{background:var(--green);}
+
+    /* TRANSPARENCY PANEL */
+
+    .panel{
+      margin-top:50px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:36px;
+      box-shadow:0 10px 28px rgba(0,0,0,.04);
+    }
+
+    .panel h3{
+      color:var(--navy);
+      margin-bottom:24px;
+      font-size:30px;
+    }
+
+    .report-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+    }
+
+    .report-card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+      background:#f9fbfd;
+    }
+
+    .report-card small{
+      color:var(--muted);
+      display:block;
+      margin-bottom:10px;
+    }
+
+    .report-card h4{
+      font-size:28px;
+      color:var(--emerald);
+    }
+
+    /* DECLARATION */
+
+    .declaration{
+      margin-top:40px;
+      background:#effcf6;
+      border:1px solid #bbf7d0;
+      border-left:6px solid var(--green);
+      border-radius:22px;
+      padding:30px;
+    }
+
+    .declaration h3{
+      color:#166534;
+      margin-bottom:14px;
+    }
+
+    .declaration p{
+      color:#14532d;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:60px 0;
+      margin-top:80px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .footer h3{
+      margin-bottom:14px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+    }
+
+    @media(max-width:920px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <a href="./index.html" class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png" alt="PFB Logo">
+
+        <div>
+          <h1>PRIVATE FAMILY BANKING</h1>
+          <p>Treasury • Credit • Continuity</p>
+        </div>
+
+      </a>
+
+      <nav class="nav-links">
+
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./vaults.html">Vaults</a>
+        <a href="./transactions.html">Transactions</a>
+        <a href="./governance.html">Governance</a>
+
+        <a
+          href="https://charlesarin1-creator.github.io/bigsharks-site/"
+          target="_blank"
+          class="bigsharks-btn">
+          BIG SHARKS
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="pill">
+          <span class="dot"></span>
+          <span>Independent Mercy Stewardship Vault</span>
+        </div>
+
+        <h2>
+          MERCY ARM <br>
+          VAULT
+        </h2>
+
+        <p>
+          MERCY ARM exists as a governed mercy allocation structure operating independently from the primary treasury capital system. The vault is dedicated to covenant mercy operations, emergency relief stewardship, widows, orphans, and continuity-centered compassion systems.
+        </p>
+
+      </div>
+
+      <div class="hero-card">
+
+        <small>FOUNDATIONAL MERCY ALLOCATION</small>
+
+        <h3>₦15,320</h3>
+
+        <p>
+          Completely separated from the primary ₦100,000 treasury structure under independent stewardship governance architecture.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PURPOSE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Mercy Governance Structure
+      </h2>
+
+      <p class="section-sub">
+        MERCY ARM operates through disciplined stewardship logic — ensuring mercy remains governed, visible, accountable, and protected from disorder.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+
+          <div class="tag emerald"></div>
+
+          <h3>Mercy Allocation</h3>
+
+          <p>
+            Structured mercy disbursement focused on covenant-centered stewardship operations.
+          </p>
+
+          <ul>
+            <li>Widow support</li>
+            <li>Orphan assistance</li>
+            <li>Emergency relief</li>
+            <li>Survival-centered interventions</li>
+          </ul>
+
+        </div>
+
+        <div class="card">
+
+          <div class="tag gold"></div>
+
+          <h3>Governance Separation</h3>
+
+          <p>
+            The Mercy ARM Vault remains operationally independent from treasury growth systems.
+          </p>
+
+          <ul>
+            <li>Separate balance visibility</li>
+            <li>Independent reporting structure</li>
+            <li>Dedicated preservation rules</li>
+            <li>Distinct stewardship governance</li>
+          </ul>
+
+        </div>
+
+        <div class="card">
+
+          <div class="tag green"></div>
+
+          <h3>Preservation Doctrine</h3>
+
+          <p>
+            Mercy resources are protected through continuity-centered allocation discipline.
+          </p>
+
+          <ul>
+            <li>No emotional disbursement</li>
+            <li>Documented allocations only</li>
+            <li>Transparency before movement</li>
+            <li>Stewardship before sentiment</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- TRANSPARENCY -->
+
+      <div class="panel">
+
+        <h3>Mercy Stewardship Transparency</h3>
+
+        <div class="report-grid">
+
+          <div class="report-card">
+            <small>Total Mercy Reserve</small>
+            <h4>₦15,320</h4>
+          </div>
+
+          <div class="report-card">
+            <small>Active Mercy Requests</small>
+            <h4>0</h4>
+          </div>
+
+          <div class="report-card">
+            <small>Governed Disbursements</small>
+            <h4>0</h4>
+          </div>
+
+          <div class="report-card">
+            <small>Operational Status</small>
+            <h4>ACTIVE</h4>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- DECLARATION -->
+
+      <div class="declaration">
+
+        <h3>Stewardship Declaration</h3>
+
+        <p>
+          MERCY ARM recognizes that mercy without governance eventually collapses under emotional inconsistency. Therefore, this vault exists to preserve disciplined compassion through accountable stewardship architecture under the constitutional laws of PRIVATE FAMILY BANKING.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <h3>MERCY ARM VAULT</h3>
+
+        <p>
+          Independent mercy stewardship infrastructure operating under PRIVATE FAMILY BANKING governance architecture.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="./dashboard.html">Treasury Dashboard</a>
+        <a href="./vaults.html">Vault Architecture</a>
+        <a href="./transactions.html">Transactions</a>
+        <a href="./governance.html">Governance Rules</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
