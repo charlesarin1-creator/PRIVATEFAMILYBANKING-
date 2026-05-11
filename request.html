@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Treasury Request Center — PRIVATE FAMILY BANKING</title>
+
+  <meta name="description"
+    content="Governed treasury request infrastructure for PRIVATE FAMILY BANKING." />
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy-2:#102846;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --white:#ffffff;
+      --bg:#f4f7fb;
+      --line:#dbe3ea;
+      --ink:#111827;
+      --muted:#64748b;
+      --card:#ffffff;
+      --green:#15803d;
+      --red:#b91c1c;
+      --yellow:#d97706;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#fff;
+    }
+
+    .brand img{
+      width:64px;
+      height:64px;
+      border-radius:16px;
+      background:#fff;
+      padding:5px;
+      object-fit:contain;
+    }
+
+    .brand h1{
+      font-size:26px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.7);
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s ease;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#020d19);
+      color:#fff;
+      padding:90px 0 70px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      padding:12px 18px;
+      border-radius:999px;
+      margin-bottom:24px;
+      font-size:14px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .hero h2{
+      font-size:58px;
+      line-height:1.05;
+      margin-bottom:24px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      max-width:760px;
+      color:rgba(255,255,255,.82);
+      font-size:18px;
+    }
+
+    /* NOTICE */
+
+    .notice{
+      margin-top:-30px;
+      position:relative;
+      z-index:10;
+    }
+
+    .notice-box{
+      background:#fff8e6;
+      border:1px solid #f2d089;
+      border-left:6px solid var(--gold);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.05);
+    }
+
+    .notice-box h3{
+      margin-bottom:14px;
+      color:#3d2d00;
+    }
+
+    .notice-box ul{
+      padding-left:18px;
+      color:#4b3b0f;
+    }
+
+    .notice-box li{
+      margin:10px 0;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:36px;
+    }
+
+    /* FORM */
+
+    .form-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+      box-shadow:0 14px 40px rgba(0,0,0,.05);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .full{
+      grid-column:1/-1;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .field label{
+      font-weight:700;
+      margin-bottom:10px;
+      color:var(--navy);
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px;
+      font-size:15px;
+      background:#fff;
+      outline:none;
+      transition:.2s ease;
+    }
+
+    .field textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(200,155,60,.12);
+    }
+
+    /* BUTTON */
+
+    .btn{
+      display:inline-block;
+      background:var(--gold);
+      color:#111;
+      padding:16px 22px;
+      border-radius:14px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      transition:.2s ease;
+      margin-top:10px;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    /* GOVERNANCE CARDS */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+    }
+
+    .gov-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .gov-card h3{
+      margin-bottom:18px;
+    }
+
+    .gov-card ul{
+      padding-left:18px;
+    }
+
+    .gov-card li{
+      margin:10px 0;
+      color:var(--muted);
+    }
+
+    .green-card{
+      border-top:6px solid var(--green);
+    }
+
+    .yellow-card{
+      border-top:6px solid var(--yellow);
+    }
+
+    .red-card{
+      border-top:6px solid var(--red);
+    }
+
+    /* TABLE */
+
+    .table-wrap{
+      overflow-x:auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:800px;
+    }
+
+    th{
+      background:var(--navy);
+      color:#fff;
+      text-align:left;
+      padding:18px;
+      font-size:14px;
+    }
+
+    td{
+      padding:18px;
+      border-bottom:1px solid var(--line);
+      font-size:14px;
+    }
+
+    tr:last-child td{
+      border-bottom:none;
+    }
+
+    .status{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .pending{
+      background:#fff3cd;
+      color:#8a6300;
+    }
+
+    .approved{
+      background:#dcfce7;
+      color:#166534;
+    }
+
+    .review{
+      background:#e0f2fe;
+      color:#075985;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:60px 0;
+      margin-top:80px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+    }
+
+    @media(max-width:920px){
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <a href="./index.html" class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png" alt="PFB Logo">
+
+        <div>
+          <h1>PRIVATE FAMILY BANKING</h1>
+          <p>Treasury • Credit • Continuity</p>
+        </div>
+
+      </a>
+
+      <nav class="nav-links">
+
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./transactions.html">Transactions</a>
+        <a href="./credit.html">Credit</a>
+        <a href="./mercyarm.html">Mercy ARM</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="pill">
+        <span class="dot"></span>
+        <span>Governed Treasury Authorization Layer</span>
+      </div>
+
+      <h2>
+        Treasury Request Center
+      </h2>
+
+      <p>
+        All treasury movement passes through governance review before execution. Every request becomes part of the permanent institutional treasury record.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- NOTICE -->
+
+  <section class="notice">
+
+    <div class="container">
+
+      <div class="notice-box">
+
+        <h3>Governance Notice</h3>
+
+        <ul>
+          <li>Emergency does not mean urgency.</li>
+          <li>Expansion cannot weaken survival reserves.</li>
+          <li>Every treasury movement must strengthen system continuity.</li>
+          <li>Undocumented movement violates treasury governance doctrine.</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FORM -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Submit Treasury Request
+      </h2>
+
+      <p class="section-sub">
+        Treasury movement is governed through documented justification, risk evaluation, and continuity review.
+      </p>
+
+      <div class="form-card">
+
+        <form>
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>Request Type</label>
+
+              <select>
+                <option>Treasury Withdrawal</option>
+                <option>Internal Credit</option>
+                <option>Emergency Request</option>
+                <option>Mercy ARM Allocation</option>
+                <option>Expansion Allocation</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Amount Requested</label>
+              <input type="number" placeholder="₦0.00">
+            </div>
+
+            <div class="field">
+              <label>Funding Vault</label>
+
+              <select>
+                <option>Stability Reserve</option>
+                <option>Operating Vault</option>
+                <option>Credit Vault</option>
+                <option>Expansion Vault</option>
+                <option>Mercy ARM Vault</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Risk Classification</label>
+
+              <select>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label>Purpose of Request</label>
+
+              <textarea placeholder="Clearly explain the purpose of this treasury request..."></textarea>
+            </div>
+
+            <div class="field full">
+              <label>System Impact Justification</label>
+
+              <textarea placeholder="How does this strengthen rather than weaken the treasury system?"></textarea>
+            </div>
+
+            <div class="field full">
+              <label>Repayment Plan (For Credit Requests)</label>
+
+              <textarea placeholder="Explain repayment structure, duration, and continuity protection logic..."></textarea>
+            </div>
+
+            <div class="field">
+              <label>Requested By</label>
+              <input type="text" placeholder="Founder-Steward">
+            </div>
+
+            <div class="field">
+              <label>Date</label>
+              <input type="date">
+            </div>
+
+          </div>
+
+          <button class="btn">
+            Submit Governance Request
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GOVERNANCE LOGIC -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Treasury Decision Logic
+      </h2>
+
+      <p class="section-sub">
+        Treasury approvals are based on continuity protection, repayment visibility, and governance preservation.
+      </p>
+
+      <div class="grid">
+
+        <div class="gov-card green-card">
+
+          <h3>Green Approval</h3>
+
+          <ul>
+            <li>Protects continuity</li>
+            <li>Repayment visibility exists</li>
+            <li>Strengthens treasury structure</li>
+            <li>Does not weaken reserves</li>
+          </ul>
+
+        </div>
+
+        <div class="gov-card yellow-card">
+
+          <h3>Yellow Review</h3>
+
+          <ul>
+            <li>Requires waiting period</li>
+            <li>Needs additional review</li>
+            <li>Operational impact unclear</li>
+            <li>Delayed governance evaluation</li>
+          </ul>
+
+        </div>
+
+        <div class="gov-card red-card">
+
+          <h3>Red Denial</h3>
+
+          <ul>
+            <li>Emotion-driven movement</li>
+            <li>No repayment structure</li>
+            <li>Weakens reserve protection</li>
+            <li>Violates treasury doctrine</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- REQUEST TABLE -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Recent Treasury Requests
+      </h2>
+
+      <p class="section-sub">
+        Treasury movement history remains permanently visible for continuity review and governance auditing.
+      </p>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Request ID</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Vault</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>PFB-REQ-001</td>
+              <td>Expansion Allocation</td>
+              <td>₦10,000</td>
+              <td>Expansion Vault</td>
+              <td><span class="status approved">Approved</span></td>
+              <td>May 11, 2026</td>
+            </tr>
+
+            <tr>
+              <td>PFB-REQ-002</td>
+              <td>Internal Credit</td>
+              <td>₦5,000</td>
+              <td>Credit Vault</td>
+              <td><span class="status review">Under Review</span></td>
+              <td>May 11, 2026</td>
+            </tr>
+
+            <tr>
+              <td>PFB-REQ-003</td>
+              <td>Mercy ARM Allocation</td>
+              <td>₦3,000</td>
+              <td>Mercy ARM Vault</td>
+              <td><span class="status pending">Pending</span></td>
+              <td>May 11, 2026</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <h3>PRIVATE FAMILY BANKING</h3>
+
+        <p>
+          A governed treasury operating system designed for continuity, reserve protection, disciplined financial structure, and institutional stewardship.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="./dashboard.html">Treasury Dashboard</a>
+        <a href="./transactions.html">Transactions</a>
+        <a href="./credit.html">Credit Governance</a>
+        <a href="./mercyarm.html">Mercy ARM</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
