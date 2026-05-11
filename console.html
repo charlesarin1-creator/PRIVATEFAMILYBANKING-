@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>PFB Treasury Console v2</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PFB Treasury Console</title>
 
   <style>
 
     :root{
       --navy:#071a2f;
-      --navy2:#0f2745;
+      --navy2:#102846;
       --gold:#c89b3c;
       --copper:#c65a2e;
       --green:#15803d;
       --red:#b91c1c;
-      --white:#ffffff;
       --bg:#f4f7fb;
-      --line:#dbe3ea;
-      --ink:#111827;
-      --muted:#64748b;
       --card:#ffffff;
+      --line:#dbe3ea;
+      --muted:#64748b;
+      --ink:#111827;
     }
 
     *{
@@ -36,16 +36,16 @@
       color:var(--ink);
     }
 
-    a{
-      text-decoration:none;
-    }
-
     .container{
       width:min(1280px,94%);
       margin:auto;
     }
 
-    /* PASSWORD SCREEN */
+    a{
+      text-decoration:none;
+    }
+
+    /* AUTH SCREEN */
 
     #authScreen{
       position:fixed;
@@ -64,34 +64,34 @@
       border-radius:28px;
       padding:40px;
       color:#fff;
-      backdrop-filter:blur(10px);
+      backdrop-filter:blur(12px);
     }
 
     .auth-box h2{
       font-size:32px;
-      margin-bottom:12px;
+      margin-bottom:14px;
     }
 
     .auth-box p{
-      color:rgba(255,255,255,.72);
-      margin-bottom:24px;
+      color:rgba(255,255,255,.74);
       line-height:1.7;
+      margin-bottom:24px;
     }
 
     .auth-box input{
       width:100%;
       padding:16px;
       border:none;
-      outline:none;
       border-radius:14px;
-      margin-bottom:18px;
+      margin-bottom:16px;
+      outline:none;
       font-size:16px;
     }
 
     .auth-btn{
       width:100%;
-      padding:16px;
       border:none;
+      padding:16px;
       border-radius:14px;
       background:var(--gold);
       color:#111;
@@ -101,22 +101,21 @@
     }
 
     .error{
-      margin-top:16px;
+      margin-top:14px;
       color:#fca5a5;
       display:none;
     }
 
-    /* MAIN APP */
+    /* APP */
 
     #consoleApp{
       display:none;
     }
 
-    /* TOPBAR */
+    /* NAVBAR */
 
-    .topbar{
+    .navbar{
       background:var(--navy);
-      color:#fff;
       padding:18px 0;
       border-bottom:4px solid var(--gold);
       position:sticky;
@@ -124,7 +123,7 @@
       z-index:1000;
     }
 
-    .top-flex{
+    .nav-flex{
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -139,21 +138,22 @@
     }
 
     .brand img{
-      width:58px;
-      height:58px;
+      width:60px;
+      height:60px;
       border-radius:14px;
       background:#fff;
-      object-fit:contain;
       padding:4px;
+      object-fit:contain;
     }
 
     .brand h1{
+      color:#fff;
       font-size:24px;
       line-height:1.1;
     }
 
     .brand p{
-      color:rgba(255,255,255,.72);
+      color:rgba(255,255,255,.7);
       font-size:14px;
       margin-top:4px;
     }
@@ -161,9 +161,9 @@
     .console-badge{
       background:rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.08);
+      color:#fff;
       padding:10px 14px;
       border-radius:12px;
-      color:#fff;
       font-size:14px;
     }
 
@@ -172,7 +172,7 @@
     .hero{
       background:linear-gradient(135deg,var(--navy),#020817);
       color:#fff;
-      padding:70px 0;
+      padding:80px 0;
     }
 
     .hero-grid{
@@ -194,24 +194,24 @@
       font-size:17px;
     }
 
-    .treasury-box{
+    .hero-card{
       background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.08);
       border-radius:28px;
       padding:30px;
     }
 
-    .treasury-box small{
+    .hero-card small{
       color:rgba(255,255,255,.68);
     }
 
-    .treasury-box h3{
+    .hero-card h3{
       font-size:54px;
       color:var(--gold);
       margin:12px 0;
     }
 
-    /* SECTIONS */
+    /* SECTION */
 
     .section{
       padding:70px 0;
@@ -225,16 +225,16 @@
 
     .section-sub{
       color:var(--muted);
-      margin-bottom:34px;
       max-width:760px;
       line-height:1.8;
+      margin-bottom:34px;
     }
 
     /* GRID */
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:20px;
     }
 
@@ -247,8 +247,8 @@
     }
 
     .card h3{
-      margin:14px 0;
       color:var(--navy);
+      margin:14px 0;
     }
 
     .metric{
@@ -257,12 +257,12 @@
       color:var(--gold);
     }
 
-    .status-good{
+    .good{
       color:var(--green);
       font-weight:700;
     }
 
-    .status-danger{
+    .danger{
       color:var(--red);
       font-weight:700;
     }
@@ -270,10 +270,10 @@
     /* ALERTS */
 
     .alert{
-      border-left:5px solid var(--gold);
       background:#fff8e7;
-      padding:18px;
+      border-left:5px solid var(--gold);
       border-radius:16px;
+      padding:18px;
       margin-bottom:16px;
     }
 
@@ -314,15 +314,15 @@
 
     /* BUTTONS */
 
-    .action-buttons{
+    .actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
     }
 
     .btn{
-      padding:12px 18px;
       border:none;
+      padding:12px 18px;
       border-radius:12px;
       cursor:pointer;
       font-weight:700;
@@ -369,6 +369,7 @@
     }
 
   </style>
+
 </head>
 
 <body>
@@ -382,8 +383,8 @@
       <h2>Treasury Authorization</h2>
 
       <p>
-        Restricted operational treasury environment.
-        Authorized governance operators only.
+        Restricted treasury governance environment.
+        Authorized operators only.
       </p>
 
       <input
@@ -408,11 +409,11 @@
 
   <div id="consoleApp">
 
-    <!-- TOPBAR -->
+    <!-- NAVBAR -->
 
-    <header class="topbar">
+    <header class="navbar">
 
-      <div class="container top-flex">
+      <div class="container nav-flex">
 
         <div class="brand">
 
@@ -446,24 +447,22 @@
           </h2>
 
           <p>
-            This operational environment governs internal liquidity,
-            reserve protection,
-            credit authorization,
-            vault integrity,
-            and institutional treasury oversight within the PRIVATE FAMILY BANKING system.
+            PRIVATE FAMILY BANKING operates through governed treasury systems,
+            protected reserve architecture,
+            controlled liquidity movement,
+            and institutional financial discipline.
           </p>
 
         </div>
 
-        <div class="treasury-box">
+        <div class="hero-card">
 
           <small>Total Governed Treasury</small>
 
           <h3>₦115,320</h3>
 
           <p>
-            Combined institutional treasury balance including
-            independent Mercy ARM stewardship allocation.
+            Includes independent Mercy ARM stewardship allocation.
           </p>
 
         </div>
@@ -472,7 +471,7 @@
 
     </section>
 
-    <!-- TREASURY METRICS -->
+    <!-- METRICS -->
 
     <section class="section">
 
@@ -483,10 +482,7 @@
         </h2>
 
         <p class="section-sub">
-          Live governance indicators monitoring reserve health,
-          credit exposure,
-          treasury continuity,
-          and operational integrity.
+          Live governance indicators monitoring treasury continuity and reserve protection.
         </p>
 
         <div class="grid">
@@ -494,25 +490,25 @@
           <div class="card">
             <p>Reserve Ratio</p>
             <div class="metric">35%</div>
-            <small class="status-good">Protected</small>
+            <small class="good">Protected</small>
           </div>
 
           <div class="card">
             <p>Credit Exposure</p>
             <div class="metric">0%</div>
-            <small class="status-good">Within Policy</small>
+            <small class="good">Within Policy</small>
           </div>
 
           <div class="card">
             <p>Contribution Compliance</p>
             <div class="metric">100%</div>
-            <small class="status-good">Active</small>
+            <small class="good">Active</small>
           </div>
 
           <div class="card">
             <p>Governance Health</p>
             <div class="metric">Stable</div>
-            <small class="status-good">Enforced</small>
+            <small class="good">Enforced</small>
           </div>
 
         </div>
@@ -533,24 +529,24 @@
 
         <div class="alert">
           <strong>Quarterly Review Scheduled</strong>
-          Treasury review cycle scheduled for next governance checkpoint.
+          Treasury governance review is active.
         </div>
 
         <div class="alert">
           <strong>Credit Exposure Status</strong>
-          No active treasury exposure detected.
+          No active exposure detected.
         </div>
 
         <div class="alert">
-          <strong>Mercy ARM Allocation Active</strong>
-          Independent stewardship vault operating under protected governance rules.
+          <strong>Mercy ARM Protection</strong>
+          Independent stewardship vault protection enforced.
         </div>
 
       </div>
 
     </section>
 
-    <!-- REQUEST APPROVAL -->
+    <!-- REQUESTS -->
 
     <section class="section">
 
@@ -561,7 +557,7 @@
         </h2>
 
         <p class="section-sub">
-          Internal treasury requests awaiting governance authorization.
+          Requests awaiting treasury authorization.
         </p>
 
         <table>
@@ -589,7 +585,7 @@
 
               <td>
 
-                <div class="action-buttons">
+                <div class="actions">
 
                   <button class="btn approve">
                     Approve
@@ -614,7 +610,7 @@
 
               <td>
 
-                <div class="action-buttons">
+                <div class="actions">
 
                   <button class="btn approve">
                     Approve
@@ -645,9 +641,8 @@
       <div class="container">
 
         <p>
-          PRIVATE FAMILY BANKING Treasury Console v2 —
+          PRIVATE FAMILY BANKING Treasury Console —
           Restricted institutional governance environment.
-          Authorized operational use only.
         </p>
 
       </div>
