@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Credit Governance | PRIVATE FAMILY BANKING</title>
+
+  <meta name="description"
+    content="PRIVATE FAMILY BANKING internal credit governance system and disciplined lending architecture." />
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy-2:#102846;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --green:#15803d;
+      --red:#b91c1c;
+      --bg:#f4f7fb;
+      --white:#ffffff;
+      --line:#dbe3ea;
+      --ink:#111827;
+      --muted:#64748b;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1200px,92%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#fff;
+    }
+
+    .brand img{
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      background:#fff;
+      padding:4px;
+      object-fit:contain;
+    }
+
+    .brand h1{
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.72);
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s ease;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    .bigsharks-btn{
+      background:var(--gold);
+      color:#111 !important;
+      font-weight:700;
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#020d19);
+      color:#fff;
+      padding:80px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      padding:12px 18px;
+      border-radius:999px;
+      margin-bottom:24px;
+      font-size:14px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .hero h2{
+      font-size:56px;
+      line-height:1.05;
+      margin-bottom:22px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.84);
+      font-size:18px;
+      max-width:760px;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:32px;
+    }
+
+    .hero-card small{
+      color:rgba(255,255,255,.7);
+    }
+
+    .hero-card h3{
+      font-size:52px;
+      color:var(--gold);
+      margin:12px 0;
+    }
+
+    .hero-card p{
+      font-size:15px;
+      margin:0;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:38px;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:30px;
+      box-shadow:0 10px 26px rgba(0,0,0,.04);
+    }
+
+    .card h3{
+      color:var(--navy);
+      margin-bottom:18px;
+      font-size:24px;
+    }
+
+    .card p{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .card ul{
+      padding-left:18px;
+    }
+
+    .card li{
+      margin:10px 0;
+      color:var(--ink);
+    }
+
+    .tag{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      margin-bottom:16px;
+    }
+
+    .gold{background:var(--gold);}
+    .red{background:var(--red);}
+    .green{background:var(--green);}
+    .copper{background:var(--copper);}
+
+    /* CREDIT TABLE */
+
+    .table-wrap{
+      margin-top:50px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 10px 26px rgba(0,0,0,.04);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    thead{
+      background:var(--navy);
+      color:#fff;
+    }
+
+    th{
+      text-align:left;
+      padding:20px;
+      font-size:14px;
+    }
+
+    td{
+      padding:20px;
+      border-bottom:1px solid var(--line);
+      font-size:15px;
+    }
+
+    tbody tr:hover{
+      background:#f8fafc;
+    }
+
+    .approved{
+      color:var(--green);
+      font-weight:700;
+    }
+
+    .denied{
+      color:var(--red);
+      font-weight:700;
+    }
+
+    .review{
+      color:#b45309;
+      font-weight:700;
+    }
+
+    /* NOTICE */
+
+    .notice{
+      margin-top:40px;
+      background:#fff7e8;
+      border:1px solid #f4d9a5;
+      border-left:6px solid var(--gold);
+      border-radius:22px;
+      padding:28px;
+    }
+
+    .notice h3{
+      color:#7a4f00;
+      margin-bottom:14px;
+    }
+
+    .notice p{
+      color:#5f4a1c;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:60px 0;
+      margin-top:80px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .footer h3{
+      margin-bottom:14px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+    }
+
+    @media(max-width:920px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .table-wrap{
+        overflow-x:auto;
+      }
+
+      table{
+        min-width:900px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <a href="./index.html" class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png" alt="PFB Logo">
+
+        <div>
+          <h1>PRIVATE FAMILY BANKING</h1>
+          <p>Treasury • Credit • Continuity</p>
+        </div>
+
+      </a>
+
+      <nav class="nav-links">
+
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./vaults.html">Vaults</a>
+        <a href="./transactions.html">Transactions</a>
+        <a href="./governance.html">Governance</a>
+
+        <a
+          href="https://charlesarin1-creator.github.io/bigsharks-site/"
+          target="_blank"
+          class="bigsharks-btn">
+          BIG SHARKS
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="pill">
+          <span class="dot"></span>
+          <span>Governed Internal Credit Infrastructure</span>
+        </div>
+
+        <h2>
+          Credit Must <br>
+          Strengthen Structure.
+        </h2>
+
+        <p>
+          PRIVATE FAMILY BANKING does not operate emotional lending. Every credit request is evaluated through treasury preservation logic, repayment visibility, and governance qualification systems.
+        </p>
+
+      </div>
+
+      <div class="hero-card">
+
+        <small>ACTIVE CREDIT RESERVE</small>
+
+        <h3>₦15,000</h3>
+
+        <p>
+          Internal treasury lending governed through exposure controls, qualification laws, and repayment visibility architecture.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CREDIT RULES -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Credit Governance Framework
+      </h2>
+
+      <p class="section-sub">
+        Credit exists to stabilize productive continuity — not to finance disorder, impulse, or non-productive financial behavior.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+
+          <div class="tag gold"></div>
+
+          <h3>Qualification Rules</h3>
+
+          <p>
+            Every request must pass treasury governance qualification before approval.
+          </p>
+
+          <ul>
+            <li>Purpose must strengthen continuity.</li>
+            <li>Repayment path must be visible.</li>
+            <li>Request must not weaken reserves.</li>
+            <li>Borrower history must remain documented.</li>
+          </ul>
+
+        </div>
+
+        <div class="card">
+
+          <div class="tag red"></div>
+
+          <h3>Automatic Denial Logic</h3>
+
+          <p>
+            Certain requests are denied automatically under constitutional treasury laws.
+          </p>
+
+          <ul>
+            <li>Impulse consumption spending.</li>
+            <li>Luxury without continuity value.</li>
+            <li>Unclear repayment structure.</li>
+            <li>Emotionally driven requests.</li>
+          </ul>
+
+        </div>
+
+        <div class="card">
+
+          <div class="tag green"></div>
+
+          <h3>Credit Protection Rules</h3>
+
+          <p>
+            Treasury stability protection overrides expansion pressure.
+          </p>
+
+          <ul>
+            <li>Maximum exposure is capped.</li>
+            <li>No undocumented lending allowed.</li>
+            <li>All disbursement must be recorded.</li>
+            <li>Reserve protection remains priority.</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- CREDIT TABLE -->
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Reference ID</th>
+              <th>Applicant</th>
+              <th>Purpose</th>
+              <th>Requested Amount</th>
+              <th>Governance Assessment</th>
+              <th>Status</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>CR-0001</td>
+              <td>Founder-Steward</td>
+              <td>Operational Expansion</td>
+              <td>₦5,000</td>
+              <td>Supports productive continuity and operational movement.</td>
+              <td class="approved">APPROVED</td>
+            </tr>
+
+            <tr>
+              <td>CR-0002</td>
+              <td>Founder-Steward</td>
+              <td>Impulse Consumption</td>
+              <td>₦8,000</td>
+              <td>Fails continuity and treasury preservation doctrine.</td>
+              <td class="denied">DENIED</td>
+            </tr>
+
+            <tr>
+              <td>CR-0003</td>
+              <td>Founder-Steward</td>
+              <td>Equipment Purchase</td>
+              <td>₦12,000</td>
+              <td>Pending repayment visibility review.</td>
+              <td class="review">UNDER REVIEW</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <!-- NOTICE -->
+
+      <div class="notice">
+
+        <h3>Governance Declaration</h3>
+
+        <p>
+          PRIVATE FAMILY BANKING recognizes that unmanaged credit destroys treasury continuity. Therefore, every internal lending decision must answer one constitutional question:
+          <strong>Does this strengthen or weaken the system?</strong>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <h3>PRIVATE FAMILY BANKING</h3>
+
+        <p>
+          Governed treasury infrastructure focused on continuity, reserve protection, internal credit discipline, and constitutional financial behavior.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="./dashboard.html">Treasury Dashboard</a>
+        <a href="./vaults.html">Vault Architecture</a>
+        <a href="./transactions.html">Transactions</a>
+        <a href="./governance.html">Governance Rules</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
