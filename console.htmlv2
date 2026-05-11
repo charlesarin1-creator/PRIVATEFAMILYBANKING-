@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>PFB Treasury Console v2</title>
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy2:#0f2745;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --green:#15803d;
+      --red:#b91c1c;
+      --white:#ffffff;
+      --bg:#f4f7fb;
+      --line:#dbe3ea;
+      --ink:#111827;
+      --muted:#64748b;
+      --card:#ffffff;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1280px,94%);
+      margin:auto;
+    }
+
+    /* PASSWORD SCREEN */
+
+    #authScreen{
+      position:fixed;
+      inset:0;
+      background:linear-gradient(135deg,#020817,var(--navy));
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+    }
+
+    .auth-box{
+      width:min(420px,92%);
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:40px;
+      color:#fff;
+      backdrop-filter:blur(10px);
+    }
+
+    .auth-box h2{
+      font-size:32px;
+      margin-bottom:12px;
+    }
+
+    .auth-box p{
+      color:rgba(255,255,255,.72);
+      margin-bottom:24px;
+      line-height:1.7;
+    }
+
+    .auth-box input{
+      width:100%;
+      padding:16px;
+      border:none;
+      outline:none;
+      border-radius:14px;
+      margin-bottom:18px;
+      font-size:16px;
+    }
+
+    .auth-btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:14px;
+      background:var(--gold);
+      color:#111;
+      font-weight:700;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .error{
+      margin-top:16px;
+      color:#fca5a5;
+      display:none;
+    }
+
+    /* MAIN APP */
+
+    #consoleApp{
+      display:none;
+    }
+
+    /* TOPBAR */
+
+    .topbar{
+      background:var(--navy);
+      color:#fff;
+      padding:18px 0;
+      border-bottom:4px solid var(--gold);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .top-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:58px;
+      height:58px;
+      border-radius:14px;
+      background:#fff;
+      object-fit:contain;
+      padding:4px;
+    }
+
+    .brand h1{
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.72);
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .console-badge{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      padding:10px 14px;
+      border-radius:12px;
+      color:#fff;
+      font-size:14px;
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#020817);
+      color:#fff;
+      padding:70px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .hero h2{
+      font-size:58px;
+      line-height:1.05;
+      margin-bottom:24px;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.82);
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    .treasury-box{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:30px;
+    }
+
+    .treasury-box small{
+      color:rgba(255,255,255,.68);
+    }
+
+    .treasury-box h3{
+      font-size:54px;
+      color:var(--gold);
+      margin:12px 0;
+    }
+
+    /* SECTIONS */
+
+    .section{
+      padding:70px 0;
+    }
+
+    .section-title{
+      font-size:40px;
+      color:var(--navy);
+      margin-bottom:12px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      margin-bottom:34px;
+      max-width:760px;
+      line-height:1.8;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .card h3{
+      margin:14px 0;
+      color:var(--navy);
+    }
+
+    .metric{
+      font-size:34px;
+      font-weight:800;
+      color:var(--gold);
+    }
+
+    .status-good{
+      color:var(--green);
+      font-weight:700;
+    }
+
+    .status-danger{
+      color:var(--red);
+      font-weight:700;
+    }
+
+    /* ALERTS */
+
+    .alert{
+      border-left:5px solid var(--gold);
+      background:#fff8e7;
+      padding:18px;
+      border-radius:16px;
+      margin-bottom:16px;
+    }
+
+    .alert strong{
+      display:block;
+      margin-bottom:8px;
+      color:#3b2d00;
+    }
+
+    /* TABLE */
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid var(--line);
+    }
+
+    th{
+      background:var(--navy);
+      color:#fff;
+      text-align:left;
+      padding:18px;
+      font-size:14px;
+    }
+
+    td{
+      padding:18px;
+      border-bottom:1px solid var(--line);
+      font-size:14px;
+    }
+
+    tr:last-child td{
+      border-bottom:none;
+    }
+
+    /* BUTTONS */
+
+    .action-buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:12px 18px;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .approve{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .reject{
+      background:var(--red);
+      color:#fff;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:40px 0;
+      margin-top:50px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.7);
+      line-height:1.8;
+    }
+
+    @media(max-width:920px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:32px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- AUTH SCREEN -->
+
+  <div id="authScreen">
+
+    <div class="auth-box">
+
+      <h2>Treasury Authorization</h2>
+
+      <p>
+        Restricted operational treasury environment.
+        Authorized governance operators only.
+      </p>
+
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Enter authorization code"
+      >
+
+      <button class="auth-btn" onclick="unlockConsole()">
+        Access Treasury Console
+      </button>
+
+      <div class="error" id="errorMsg">
+        Invalid authorization code.
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN APP -->
+
+  <div id="consoleApp">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div class="container top-flex">
+
+        <div class="brand">
+
+          <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png" alt="PFB Logo">
+
+          <div>
+            <h1>PFB TREASURY CONSOLE</h1>
+            <p>Governance • Oversight • Treasury Authority</p>
+          </div>
+
+        </div>
+
+        <div class="console-badge">
+          Console Status: ACTIVE
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div>
+
+          <h2>
+            Treasury Command Center
+          </h2>
+
+          <p>
+            This operational environment governs internal liquidity,
+            reserve protection,
+            credit authorization,
+            vault integrity,
+            and institutional treasury oversight within the PRIVATE FAMILY BANKING system.
+          </p>
+
+        </div>
+
+        <div class="treasury-box">
+
+          <small>Total Governed Treasury</small>
+
+          <h3>₦115,320</h3>
+
+          <p>
+            Combined institutional treasury balance including
+            independent Mercy ARM stewardship allocation.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TREASURY METRICS -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Treasury Metrics
+        </h2>
+
+        <p class="section-sub">
+          Live governance indicators monitoring reserve health,
+          credit exposure,
+          treasury continuity,
+          and operational integrity.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <p>Reserve Ratio</p>
+            <div class="metric">35%</div>
+            <small class="status-good">Protected</small>
+          </div>
+
+          <div class="card">
+            <p>Credit Exposure</p>
+            <div class="metric">0%</div>
+            <small class="status-good">Within Policy</small>
+          </div>
+
+          <div class="card">
+            <p>Contribution Compliance</p>
+            <div class="metric">100%</div>
+            <small class="status-good">Active</small>
+          </div>
+
+          <div class="card">
+            <p>Governance Health</p>
+            <div class="metric">Stable</div>
+            <small class="status-good">Enforced</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ALERTS -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Governance Alerts
+        </h2>
+
+        <div class="alert">
+          <strong>Quarterly Review Scheduled</strong>
+          Treasury review cycle scheduled for next governance checkpoint.
+        </div>
+
+        <div class="alert">
+          <strong>Credit Exposure Status</strong>
+          No active treasury exposure detected.
+        </div>
+
+        <div class="alert">
+          <strong>Mercy ARM Allocation Active</strong>
+          Independent stewardship vault operating under protected governance rules.
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- REQUEST APPROVAL -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          Pending Treasury Requests
+        </h2>
+
+        <p class="section-sub">
+          Internal treasury requests awaiting governance authorization.
+        </p>
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Reference</th>
+              <th>Request Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td>PFB-001</td>
+              <td>Expansion Allocation</td>
+              <td>₦10,000</td>
+              <td>Awaiting Review</td>
+
+              <td>
+
+                <div class="action-buttons">
+
+                  <button class="btn approve">
+                    Approve
+                  </button>
+
+                  <button class="btn reject">
+                    Reject
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>PFB-002</td>
+              <td>Mercy ARM Relief</td>
+              <td>₦5,000</td>
+              <td>Pending Governance</td>
+
+              <td>
+
+                <div class="action-buttons">
+
+                  <button class="btn approve">
+                    Approve
+                  </button>
+
+                  <button class="btn reject">
+                    Reject
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+      <div class="container">
+
+        <p>
+          PRIVATE FAMILY BANKING Treasury Console v2 —
+          Restricted institutional governance environment.
+          Authorized operational use only.
+        </p>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    function unlockConsole(){
+
+      const password = "PFB2026";
+
+      const input =
+        document.getElementById("passwordInput").value;
+
+      const error =
+        document.getElementById("errorMsg");
+
+      if(input === password){
+
+        document.getElementById("authScreen").style.display = "none";
+
+        document.getElementById("consoleApp").style.display = "block";
+
+      } else {
+
+        error.style.display = "block";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
