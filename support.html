@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>PFB Support — Treasury Communication Layer</title>
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy2:#102846;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --bg:#f4f7fb;
+      --white:#ffffff;
+      --line:#dbe3ea;
+      --ink:#111827;
+      --muted:#64748b;
+      --green:#15803d;
+      --red:#b91c1c;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1180px,92%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:60px;
+      height:60px;
+      border-radius:14px;
+      background:#fff;
+      padding:4px;
+      object-fit:contain;
+    }
+
+    .brand h1{
+      color:#fff;
+      font-size:22px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.7);
+      font-size:14px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s ease;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#020d19);
+      color:#fff;
+      padding:70px 0;
+    }
+
+    .hero h2{
+      font-size:54px;
+      margin-bottom:20px;
+      line-height:1.05;
+    }
+
+    .hero p{
+      max-width:760px;
+      color:rgba(255,255,255,.82);
+      font-size:18px;
+      line-height:1.9;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      padding:12px 16px;
+      border-radius:999px;
+      margin-bottom:24px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:40px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:34px;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:32px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .card h3{
+      margin-bottom:20px;
+      color:var(--navy);
+      font-size:24px;
+    }
+
+    /* FORM */
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:10px;
+      font-weight:600;
+      color:var(--navy);
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      padding:16px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      font-size:15px;
+      background:#fff;
+      outline:none;
+    }
+
+    textarea{
+      resize:vertical;
+      min-height:140px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--gold);
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      background:var(--gold);
+      color:#111;
+      padding:16px;
+      border-radius:14px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    /* STATUS */
+
+    .status-box{
+      margin-top:20px;
+      padding:16px;
+      border-radius:14px;
+      display:none;
+      font-weight:600;
+    }
+
+    .success{
+      background:#dcfce7;
+      color:var(--green);
+      border:1px solid #bbf7d0;
+    }
+
+    /* INFO BOXES */
+
+    .info-grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .info-box{
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:22px;
+      background:#f8fafc;
+    }
+
+    .info-box h4{
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+
+    .info-box p{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.7;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-top:14px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      background:#ecfccb;
+      color:#365314;
+    }
+
+    /* TABLE */
+
+    .table-wrap{
+      margin-top:34px;
+      overflow-x:auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      background:#f8fafc;
+      text-align:left;
+      padding:18px;
+      color:var(--navy);
+      font-size:14px;
+    }
+
+    td{
+      padding:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:60px 0;
+      margin-top:80px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .footer h3{
+      margin-bottom:16px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.72);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.72);
+    }
+
+    @media(max-width:920px){
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <a href="./index.html" class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png" alt="PFB Logo">
+
+        <div>
+          <h1>PRIVATE FAMILY BANKING</h1>
+          <p>Treasury • Credit • Continuity</p>
+        </div>
+
+      </a>
+
+      <nav class="nav-links">
+
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./deposit.html">Deposit</a>
+        <a href="./withdrawal.html">Withdrawal</a>
+        <a href="./loan-application.html">Credit</a>
+        <a href="./ledger.html">Ledger</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="pill">
+        <span class="dot"></span>
+        <span>Institutional Communication Layer</span>
+      </div>
+
+      <h2>
+        Treasury Support <br>
+        & Governance Communication
+      </h2>
+
+      <p>
+        All communication entering PRIVATE FAMILY BANKING is governed through structured accountability, operational visibility, and continuity-focused stewardship protocols.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- SUPPORT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Submit Treasury Communication
+      </h2>
+
+      <p class="section-sub">
+        Support requests, governance concerns, vault clarification, and operational communication are documented through the institutional support framework.
+      </p>
+
+      <div class="grid">
+
+        <!-- FORM -->
+
+        <div class="card">
+
+          <h3>Communication Form</h3>
+
+          <form id="supportForm">
+
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+              <label>Communication Type</label>
+
+              <select id="type" required>
+                <option value="">Select Type</option>
+                <option>Vault Inquiry</option>
+                <option>Governance Concern</option>
+                <option>Credit Support</option>
+                <option>Withdrawal Clarification</option>
+                <option>Mercy ARM Communication</option>
+                <option>Technical Support</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Message</label>
+              <textarea id="message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+              Submit Communication
+            </button>
+
+          </form>
+
+          <div class="status-box success" id="successBox">
+            Treasury communication submitted successfully.
+          </div>
+
+        </div>
+
+        <!-- INFO -->
+
+        <div class="info-grid">
+
+          <div class="info-box">
+
+            <h4>Governance Communication</h4>
+
+            <p>
+              All operational communication is documented for accountability, continuity review, and institutional transparency.
+            </p>
+
+            <span class="badge">Protected Layer</span>
+
+          </div>
+
+          <div class="info-box">
+
+            <h4>Treasury Support Hours</h4>
+
+            <p>
+              Treasury reviews, communication oversight, and governance responses operate through scheduled stewardship cycles.
+            </p>
+
+            <span class="badge">Operational</span>
+
+          </div>
+
+          <div class="info-box">
+
+            <h4>MERCY ARM Requests</h4>
+
+            <p>
+              Mercy ARM communication is reviewed independently from institutional treasury allocations and follows covenant stewardship governance.
+            </p>
+
+            <span class="badge">Independent Vault</span>
+
+          </div>
+
+          <div class="info-box">
+
+            <h4>BIG SHARKS Institutional Link</h4>
+
+            <p>
+              Strategic institutional systems operate separately from treasury continuity reserves while remaining visible within governance architecture.
+            </p>
+
+            <span class="badge">Strategic Layer</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- COMMUNICATION TABLE -->
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+
+          <tbody id="supportTable">
+
+            <tr>
+              <td>SUP-001</td>
+              <td>Governance Inquiry</td>
+              <td>Resolved</td>
+              <td>May 2026</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <h3>PRIVATE FAMILY BANKING</h3>
+
+        <p>
+          Governed treasury infrastructure designed for continuity, reserve protection, operational stewardship, and institutional financial discipline.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./ledger.html">Treasury Ledger</a>
+        <a href="./credit.html">Credit Governance</a>
+        <a href="./mercyarm.html">MERCY ARM</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    const supportForm = document.getElementById("supportForm");
+    const supportTable = document.getElementById("supportTable");
+    const successBox = document.getElementById("successBox");
+
+    supportForm.addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      const type = document.getElementById("type").value;
+
+      const reference = "SUP-" + Math.floor(Math.random() * 900 + 100);
+
+      const row = `
+        <tr>
+          <td>${reference}</td>
+          <td>${type}</td>
+          <td>Submitted</td>
+          <td>${new Date().toLocaleDateString()}</td>
+        </tr>
+      `;
+
+      supportTable.innerHTML += row;
+
+      successBox.style.display = "block";
+
+      supportForm.reset();
+
+      setTimeout(() => {
+        successBox.style.display = "none";
+      }, 3000);
+
+    });
+
+  </script>
+
+</body>
+</html>
