@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>PFB Withdrawal Portal — Governed Treasury Outflow</title>
+
+  <meta name="description"
+    content="PRIVATE FAMILY BANKING Withdrawal Portal — governed treasury outflow infrastructure enforcing liquidity protection, continuity discipline, and constitutional treasury governance." />
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy2:#102846;
+      --gold:#c89b3c;
+      --copper:#c65a2e;
+      --green:#15803d;
+      --red:#b91c1c;
+      --bg:#f4f7fb;
+      --line:#dbe3ea;
+      --card:#ffffff;
+      --ink:#111827;
+      --muted:#64748b;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.7;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1120px,92%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:60px;
+      height:60px;
+      border-radius:14px;
+      background:#fff;
+      padding:4px;
+      object-fit:contain;
+    }
+
+    .brand h1{
+      color:#fff;
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.7);
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s ease;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy),#020d19);
+      color:#fff;
+      padding:80px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      padding:12px 16px;
+      border-radius:999px;
+      margin-bottom:24px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .hero h2{
+      font-size:54px;
+      line-height:1.05;
+      margin-bottom:24px;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.82);
+      font-size:18px;
+      line-height:1.9;
+      margin-bottom:26px;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:30px;
+    }
+
+    .hero-card h3{
+      color:var(--gold);
+      font-size:42px;
+      margin:14px 0;
+    }
+
+    .hero-card p{
+      margin:0;
+      font-size:15px;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:40px;
+    }
+
+    /* FORM */
+
+    .form-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:36px;
+      box-shadow:0 10px 30px rgba(0,0,0,.04);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .form-group{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      font-weight:700;
+      color:var(--navy);
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      padding:16px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      font-size:15px;
+      outline:none;
+      background:#fff;
+    }
+
+    textarea{
+      resize:vertical;
+      min-height:120px;
+    }
+
+    .submit-btn{
+      margin-top:24px;
+      width:100%;
+      padding:18px;
+      border:none;
+      border-radius:16px;
+      background:var(--gold);
+      color:#111;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    /* GOVERNANCE BOX */
+
+    .governance-box{
+      margin-top:30px;
+      background:#fff7ed;
+      border:1px solid #f3c38b;
+      border-left:5px solid var(--copper);
+      border-radius:20px;
+      padding:24px;
+    }
+
+    .governance-box h3{
+      margin-bottom:14px;
+      color:var(--navy);
+    }
+
+    .governance-box ul{
+      padding-left:18px;
+    }
+
+    .governance-box li{
+      margin:10px 0;
+      color:#5b6472;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:60px 0;
+      margin-top:80px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.7);
+      margin-top:10px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .footer-links a{
+      color:rgba(255,255,255,.7);
+    }
+
+    .footer-links a:hover{
+      color:#fff;
+    }
+
+    @media(max-width:920px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <a href="./index.html" class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png" alt="PFB Logo">
+
+        <div>
+          <h1>PRIVATE FAMILY BANKING</h1>
+          <p>Treasury • Credit • Continuity</p>
+        </div>
+
+      </a>
+
+      <nav class="nav-links">
+
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./ledger.html">Ledger</a>
+        <a href="./governance.html">Governance</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="pill">
+          <span class="dot"></span>
+          <span>Governed Treasury Outflow Infrastructure</span>
+        </div>
+
+        <h2>
+          Governed <br>
+          Withdrawal Request
+        </h2>
+
+        <p>
+          Every treasury withdrawal within PRIVATE FAMILY BANKING must pass governance review designed to protect liquidity, preserve continuity, and prevent emotionally driven treasury erosion.
+        </p>
+
+      </div>
+
+      <div class="hero-card">
+
+        <small>WITHDRAWAL LAW</small>
+
+        <h3>Survival Before Expansion</h3>
+
+        <p>
+          No treasury movement is permitted if it weakens institutional continuity or violates treasury protection doctrine.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FORM SECTION -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Treasury Withdrawal Application
+      </h2>
+
+      <p class="section-sub">
+        Submit a governed treasury withdrawal request for review, classification, and constitutional treasury approval.
+      </p>
+
+      <div class="form-card">
+
+        <form id="withdrawalForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>Full Name</label>
+
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Enter full name"
+                required>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Phone Number</label>
+
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Enter phone number"
+                required>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Withdrawal Amount</label>
+
+              <input
+                type="number"
+                id="amount"
+                placeholder="Enter withdrawal amount"
+                required>
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Withdrawal Vault</label>
+
+              <select id="vault" required>
+
+                <option value="">Select Vault</option>
+
+                <option value="Stability Reserve">
+                  Stability Reserve
+                </option>
+
+                <option value="Expansion Vault">
+                  Expansion Vault
+                </option>
+
+                <option value="Operations Vault">
+                  Operations Vault
+                </option>
+
+                <option value="Credit Vault">
+                  Credit Vault
+                </option>
+
+                <option value="MERCY ARM">
+                  MERCY ARM
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>Purpose of Withdrawal</label>
+
+              <textarea
+                id="purpose"
+                placeholder="Explain the operational reason for this treasury withdrawal..."
+                required></textarea>
+
+            </div>
+
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Submit Withdrawal Request
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- GOVERNANCE RULES -->
+
+      <div class="governance-box">
+
+        <h3>Withdrawal Governance Rules</h3>
+
+        <ul>
+
+          <li>Every withdrawal must strengthen continuity or operational stability.</li>
+
+          <li>Emotionally driven withdrawals violate treasury doctrine.</li>
+
+          <li>Yellow-class spending may enter delayed review.</li>
+
+          <li>Red-class withdrawals are restricted automatically.</li>
+
+          <li>Protected reserves cannot be weakened without governance approval.</li>
+
+          <li>MERCY ARM allocations must align with covenant stewardship purpose.</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div>
+
+        <h3>PRIVATE FAMILY BANKING</h3>
+
+        <p>
+          Governed treasury infrastructure preserving continuity, liquidity discipline, reserve protection, and constitutional treasury stewardship.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="./dashboard.html">Treasury Dashboard</a>
+        <a href="./ledger.html">Treasury Ledger</a>
+        <a href="./vaults.html">Vault Architecture</a>
+        <a href="./governance.html">Governance Framework</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
