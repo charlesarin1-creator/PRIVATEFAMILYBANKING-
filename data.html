@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PFB Data Center</title>
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --gold:#c89b3c;
+      --green:#15803d;
+      --red:#b91c1c;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --line:#dbe3ea;
+      --muted:#64748b;
+      --ink:#111827;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    .container{
+      width:min(1120px,92%);
+      margin:auto;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:58px;
+      height:58px;
+      background:#fff;
+      border-radius:14px;
+      padding:4px;
+    }
+
+    .brand h1{
+      color:#fff;
+      font-size:24px;
+      line-height:1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.72);
+      margin-top:5px;
+      font-size:14px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:
+      linear-gradient(rgba(2,10,20,.84),rgba(2,10,20,.92)),
+      linear-gradient(135deg,#071a2f,#020817);
+
+      color:#fff;
+      padding:80px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero h2{
+      font-size:56px;
+      line-height:1.05;
+      margin-bottom:18px;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.82);
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    .wallet-box{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:30px;
+      backdrop-filter:blur(12px);
+    }
+
+    .wallet-box small{
+      color:rgba(255,255,255,.7);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .wallet-box h3{
+      font-size:56px;
+      color:var(--gold);
+      margin:14px 0;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:34px;
+      max-width:760px;
+    }
+
+    /* FORM */
+
+    .form-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:36px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .input-group{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .input-group label{
+      margin-bottom:10px;
+      font-weight:700;
+      color:var(--navy);
+    }
+
+    .input-group input,
+    .input-group select{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      outline:none;
+      font-size:15px;
+    }
+
+    .full{
+      grid-column:1/-1;
+    }
+
+    .submit-btn{
+      margin-top:28px;
+      border:none;
+      background:var(--gold);
+      color:#111;
+      font-weight:800;
+      padding:16px 22px;
+      border-radius:14px;
+      cursor:pointer;
+      font-size:16px;
+      width:100%;
+    }
+
+    /* DATA PLANS */
+
+    .plans-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+      margin-top:36px;
+    }
+
+    .plan-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+    }
+
+    .plan-card h3{
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+
+    .plan-card p{
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    .price{
+      color:var(--gold);
+      font-size:24px;
+      font-weight:800;
+    }
+
+    /* TABLE */
+
+    .table-wrap{
+      overflow-x:auto;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid var(--line);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      background:var(--navy);
+      color:#fff;
+      text-align:left;
+      padding:18px;
+      font-size:14px;
+    }
+
+    td{
+      padding:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .success{
+      color:var(--green);
+      font-weight:700;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:50px 0;
+      margin-top:50px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.72);
+      line-height:1.8;
+    }
+
+    @media(max-width:900px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .wallet-box h3{
+        font-size:42px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <div class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png">
+
+        <div>
+          <h1>PFB DATA CENTER</h1>
+          <p>Connectivity • Wallet • Treasury</p>
+        </div>
+
+      </div>
+
+      <nav class="nav-links">
+
+        <a href="./wallet.html">Wallet</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./airtime.html">Airtime</a>
+        <a href="./support.html">Support</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <h2>
+          Data Bundle <br>
+          Center
+        </h2>
+
+        <p>
+          Purchase mobile data securely through the PRIVATE FAMILY BANKING
+          utility infrastructure with governed transaction visibility
+          and treasury-backed wallet execution.
+        </p>
+
+      </div>
+
+      <div class="wallet-box">
+
+        <small>Wallet Balance</small>
+
+        <h3 id="walletBalance">
+          ₦0
+        </h3>
+
+        <p>
+          Operational treasury wallet connected to institutional utility services.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FORM -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Buy Data Bundle
+      </h2>
+
+      <p class="section-sub">
+        Execute governed mobile data purchases through institutional treasury systems.
+      </p>
+
+      <div class="form-card">
+
+        <div class="form-grid">
+
+          <div class="input-group">
+
+            <label>Mobile Network</label>
+
+            <select id="network">
+
+              <option value="MTN">MTN</option>
+              <option value="Airtel">Airtel</option>
+              <option value="Glo">Glo</option>
+              <option value="9mobile">9mobile</option>
+
+            </select>
+
+          </div>
+
+          <div class="input-group">
+
+            <label>Phone Number</label>
+
+            <input
+              type="tel"
+              id="phone"
+              placeholder="08012345678"
+            >
+
+          </div>
+
+          <div class="input-group full">
+
+            <label>Select Data Plan</label>
+
+            <select id="plan">
+
+              <option value="500">500MB — ₦500</option>
+              <option value="1000">1GB — ₦1,000</option>
+              <option value="2000">2GB — ₦2,000</option>
+              <option value="3500">5GB — ₦3,500</option>
+              <option value="5000">10GB — ₦5,000</option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+        <button class="submit-btn" onclick="buyData()">
+          Purchase Data Bundle
+        </button>
+
+      </div>
+
+      <!-- PLANS -->
+
+      <div class="plans-grid">
+
+        <div class="plan-card">
+          <h3>500MB</h3>
+          <p>Entry connectivity allocation.</p>
+          <div class="price">₦500</div>
+        </div>
+
+        <div class="plan-card">
+          <h3>1GB</h3>
+          <p>Standard operational access.</p>
+          <div class="price">₦1,000</div>
+        </div>
+
+        <div class="plan-card">
+          <h3>5GB</h3>
+          <p>Extended institutional usage.</p>
+          <div class="price">₦3,500</div>
+        </div>
+
+        <div class="plan-card">
+          <h3>10GB</h3>
+          <p>High-capacity treasury connectivity.</p>
+          <div class="price">₦5,000</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TRANSACTION HISTORY -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Data Transaction History
+      </h2>
+
+      <p class="section-sub">
+        Visibility into all governed data purchases executed through the treasury wallet.
+      </p>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Reference</th>
+              <th>Network</th>
+              <th>Phone</th>
+              <th>Plan</th>
+              <th>Status</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="dataTable">
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        PRIVATE FAMILY BANKING Data Center —
+        governed connectivity infrastructure and treasury-backed utility operations.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    function formatMoney(amount){
+      return "₦" + Number(amount).toLocaleString();
+    }
+
+    function getWallet(){
+
+      let treasury =
+        JSON.parse(localStorage.getItem("pfb_treasury")) || {};
+
+      return treasury.totalTreasury || 115320;
+
+    }
+
+    function setWallet(amount){
+
+      let treasury =
+        JSON.parse(localStorage.getItem("pfb_treasury")) || {};
+
+      treasury.totalTreasury = amount;
+
+      localStorage.setItem(
+        "pfb_treasury",
+        JSON.stringify(treasury)
+      );
+
+    }
+
+    function loadWallet(){
+
+      document.getElementById("walletBalance").innerText =
+        formatMoney(getWallet());
+
+    }
+
+    function loadTransactions(){
+
+      let history =
+        JSON.parse(localStorage.getItem("pfb_data")) || [];
+
+      let table =
+        document.getElementById("dataTable");
+
+      table.innerHTML = "";
+
+      history.reverse().forEach(item => {
+
+        table.innerHTML += `
+          <tr>
+            <td>${item.reference}</td>
+            <td>${item.network}</td>
+            <td>${item.phone}</td>
+            <td>${item.planText}</td>
+            <td class="success">Successful</td>
+          </tr>
+        `;
+
+      });
+
+    }
+
+    function buyData(){
+
+      let network =
+        document.getElementById("network").value;
+
+      let phone =
+        document.getElementById("phone").value;
+
+      let amount =
+        Number(document.getElementById("plan").value);
+
+      let planText =
+        document.getElementById("plan").options[
+          document.getElementById("plan").selectedIndex
+        ].text;
+
+      if(!phone){
+
+        alert("Complete all fields.");
+
+        return;
+
+      }
+
+      let wallet = getWallet();
+
+      if(amount > wallet){
+
+        alert("Insufficient wallet balance.");
+
+        return;
+
+      }
+
+      wallet -= amount;
+
+      setWallet(wallet);
+
+      let history =
+        JSON.parse(localStorage.getItem("pfb_data")) || [];
+
+      let reference =
+        "DATA-" + Date.now();
+
+      history.push({
+
+        reference,
+        network,
+        phone,
+        amount,
+        planText
+
+      });
+
+      localStorage.setItem(
+        "pfb_data",
+        JSON.stringify(history)
+      );
+
+      let tx =
+        JSON.parse(localStorage.getItem("pfb_transactions")) || [];
+
+      tx.push({
+
+        reference,
+        type:"Data Purchase",
+        network,
+        amount,
+        date:new Date().toLocaleString(),
+        status:"Successful"
+
+      });
+
+      localStorage.setItem(
+        "pfb_transactions",
+        JSON.stringify(tx)
+      );
+
+      alert("Data purchase successful.");
+
+      loadWallet();
+      loadTransactions();
+
+      document.getElementById("phone").value = "";
+
+    }
+
+    loadWallet();
+    loadTransactions();
+
+  </script>
+
+</body>
+</html>
