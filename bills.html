@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PFB Bills Center</title>
+
+  <style>
+
+    :root{
+      --navy:#071a2f;
+      --navy2:#102846;
+      --gold:#c89b3c;
+      --green:#15803d;
+      --red:#b91c1c;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --line:#dbe3ea;
+      --muted:#64748b;
+      --ink:#111827;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(1140px,92%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      background:var(--navy);
+      border-bottom:4px solid var(--gold);
+      padding:18px 0;
+    }
+
+    .nav-flex{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:58px;
+      height:58px;
+      border-radius:14px;
+      background:#fff;
+      padding:4px;
+    }
+
+    .brand h1{
+      color:#fff;
+      font-size:24px;
+      line-height:1;
+    }
+
+    .brand p{
+      color:rgba(255,255,255,.7);
+      margin-top:5px;
+      font-size:14px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:#fff;
+      padding:10px 14px;
+      border-radius:10px;
+      transition:.2s;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      background:
+      linear-gradient(rgba(2,10,20,.84),rgba(2,10,20,.92)),
+      linear-gradient(135deg,var(--navy),#020817);
+
+      color:#fff;
+      padding:80px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr .85fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .hero h2{
+      font-size:58px;
+      line-height:1.05;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.82);
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    .wallet-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:30px;
+      backdrop-filter:blur(12px);
+    }
+
+    .wallet-card small{
+      color:rgba(255,255,255,.7);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .wallet-card h3{
+      font-size:56px;
+      color:var(--gold);
+      margin:14px 0;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:34px;
+      max-width:760px;
+    }
+
+    /* FORM */
+
+    .form-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:36px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .input-group{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .input-group label{
+      margin-bottom:10px;
+      font-weight:700;
+      color:var(--navy);
+    }
+
+    .input-group input,
+    .input-group select{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      outline:none;
+      font-size:15px;
+    }
+
+    .full{
+      grid-column:1/-1;
+    }
+
+    .submit-btn{
+      margin-top:28px;
+      width:100%;
+      border:none;
+      background:var(--gold);
+      color:#111;
+      font-weight:800;
+      padding:16px;
+      border-radius:14px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    /* SERVICE GRID */
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+      margin-top:40px;
+    }
+
+    .service-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px;
+    }
+
+    .service-card h3{
+      color:var(--navy);
+      margin-bottom:12px;
+    }
+
+    .service-card p{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* TABLE */
+
+    .table-wrap{
+      overflow-x:auto;
+      border-radius:24px;
+      background:#fff;
+      border:1px solid var(--line);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      background:var(--navy);
+      color:#fff;
+      text-align:left;
+      padding:18px;
+      font-size:14px;
+    }
+
+    td{
+      padding:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .success{
+      color:var(--green);
+      font-weight:700;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      background:#07111d;
+      color:#fff;
+      padding:50px 0;
+      margin-top:50px;
+    }
+
+    .footer p{
+      color:rgba(255,255,255,.72);
+      line-height:1.8;
+    }
+
+    @media(max-width:900px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h2{
+        font-size:42px;
+      }
+
+      .wallet-card h3{
+        font-size:42px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-flex">
+
+      <div class="brand">
+
+        <img src="./assets/file_00000000b6207246a72f4572d903a3d8.png">
+
+        <div>
+          <h1>PFB BILLS CENTER</h1>
+          <p>Utilities • Treasury • Payments</p>
+        </div>
+
+      </div>
+
+      <nav class="nav-links">
+
+        <a href="./wallet.html">Wallet</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./airtime.html">Airtime</a>
+        <a href="./data.html">Data</a>
+        <a href="./support.html">Support</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <h2>
+          Utility Bills <br>
+          Payment Center
+        </h2>
+
+        <p>
+          Execute electricity, cable TV, internet,
+          and utility payments through governed treasury infrastructure
+          with institutional transaction visibility and wallet-backed execution.
+        </p>
+
+      </div>
+
+      <div class="wallet-card">
+
+        <small>Wallet Balance</small>
+
+        <h3 id="walletBalance">
+          ₦0
+        </h3>
+
+        <p>
+          Treasury-backed operational wallet for institutional utility payments.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BILL PAYMENT -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Pay Utility Bills
+      </h2>
+
+      <p class="section-sub">
+        Process governed utility payments through the PRIVATE FAMILY BANKING operating infrastructure.
+      </p>
+
+      <div class="form-card">
+
+        <div class="form-grid">
+
+          <div class="input-group">
+
+            <label>Bill Category</label>
+
+            <select id="billType">
+
+              <option value="Electricity">Electricity</option>
+              <option value="Cable TV">Cable TV</option>
+              <option value="Internet">Internet</option>
+              <option value="Water">Water</option>
+
+            </select>
+
+          </div>
+
+          <div class="input-group">
+
+            <label>Provider</label>
+
+            <select id="provider">
+
+              <option value="IKEDC">IKEDC</option>
+              <option value="AEDC">AEDC</option>
+              <option value="DSTV">DSTV</option>
+              <option value="GOTV">GOTV</option>
+              <option value="Spectranet">Spectranet</option>
+
+            </select>
+
+          </div>
+
+          <div class="input-group">
+
+            <label>Meter / Smartcard / Account Number</label>
+
+            <input
+              type="text"
+              id="accountNumber"
+              placeholder="Enter account number"
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <label>Amount</label>
+
+            <input
+              type="number"
+              id="amount"
+              placeholder="Enter amount"
+            >
+
+          </div>
+
+        </div>
+
+        <button class="submit-btn" onclick="payBill()">
+          Process Bill Payment
+        </button>
+
+      </div>
+
+      <!-- SERVICES -->
+
+      <div class="services">
+
+        <div class="service-card">
+          <h3>Electricity</h3>
+          <p>
+            Pay prepaid and postpaid electricity bills through treasury-backed infrastructure.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Cable TV</h3>
+          <p>
+            Renew DSTV, GOTV, and entertainment subscriptions securely.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Internet</h3>
+          <p>
+            Governed connectivity subscription and internet utility management.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Water Utilities</h3>
+          <p>
+            Structured utility payment visibility and institutional bill execution.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PAYMENT HISTORY -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Utility Payment History
+      </h2>
+
+      <p class="section-sub">
+        Visibility into all utility transactions processed through the treasury system.
+      </p>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Reference</th>
+              <th>Bill Type</th>
+              <th>Provider</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="billsTable">
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        PRIVATE FAMILY BANKING Bills Center —
+        governed utility infrastructure and treasury-backed operational payments.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script>
+
+    function formatMoney(amount){
+      return "₦" + Number(amount).toLocaleString();
+    }
+
+    function getWallet(){
+
+      let treasury =
+        JSON.parse(localStorage.getItem("pfb_treasury")) || {};
+
+      return treasury.totalTreasury || 115320;
+
+    }
+
+    function setWallet(amount){
+
+      let treasury =
+        JSON.parse(localStorage.getItem("pfb_treasury")) || {};
+
+      treasury.totalTreasury = amount;
+
+      localStorage.setItem(
+        "pfb_treasury",
+        JSON.stringify(treasury)
+      );
+
+    }
+
+    function loadWallet(){
+
+      document.getElementById("walletBalance").innerText =
+        formatMoney(getWallet());
+
+    }
+
+    function loadBills(){
+
+      let bills =
+        JSON.parse(localStorage.getItem("pfb_bills")) || [];
+
+      let table =
+        document.getElementById("billsTable");
+
+      table.innerHTML = "";
+
+      bills.reverse().forEach(item => {
+
+        table.innerHTML += `
+          <tr>
+            <td>${item.reference}</td>
+            <td>${item.billType}</td>
+            <td>${item.provider}</td>
+            <td>${formatMoney(item.amount)}</td>
+            <td class="success">Successful</td>
+          </tr>
+        `;
+
+      });
+
+    }
+
+    function payBill(){
+
+      let billType =
+        document.getElementById("billType").value;
+
+      let provider =
+        document.getElementById("provider").value;
+
+      let accountNumber =
+        document.getElementById("accountNumber").value;
+
+      let amount =
+        Number(document.getElementById("amount").value);
+
+      if(!accountNumber || !amount){
+
+        alert("Complete all fields.");
+
+        return;
+
+      }
+
+      let wallet = getWallet();
+
+      if(amount > wallet){
+
+        alert("Insufficient wallet balance.");
+
+        return;
+
+      }
+
+      wallet -= amount;
+
+      setWallet(wallet);
+
+      let bills =
+        JSON.parse(localStorage.getItem("pfb_bills")) || [];
+
+      let reference =
+        "BILL-" + Date.now();
+
+      bills.push({
+
+        reference,
+        billType,
+        provider,
+        accountNumber,
+        amount
+
+      });
+
+      localStorage.setItem(
+        "pfb_bills",
+        JSON.stringify(bills)
+      );
+
+      let tx =
+        JSON.parse(localStorage.getItem("pfb_transactions")) || [];
+
+      tx.push({
+
+        reference,
+        type:"Bill Payment",
+        provider,
+        amount,
+        date:new Date().toLocaleString(),
+        status:"Successful"
+
+      });
+
+      localStorage.setItem(
+        "pfb_transactions",
+        JSON.stringify(tx)
+      );
+
+      alert("Bill payment successful.");
+
+      document.getElementById("accountNumber").value = "";
+      document.getElementById("amount").value = "";
+
+      loadWallet();
+      loadBills();
+
+    }
+
+    loadWallet();
+    loadBills();
+
+  </script>
+
+</body>
+</html>
